@@ -29,7 +29,7 @@ body{
     background-color:black;
     opacity:0.5;
     outline:1px solid gray;
-    outline-offset:-1px;
+    outline-offset:-2px;
 }
 
 .container_12 .grid_1 {
