@@ -3,10 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>Alex_blog</title>
-        <link rel="stylesheet" href="my_column_12.css" />
+        <link rel="stylesheet" href="css/my_column_12.css" />
         <script type="text/javascript">
         //TODO: сделать абстрактным!
         //м.б. использовать ViewModel? ;-P
+            function try (this){
+                var block = [["about","works","cmd"],["blog","cloud"]];
+
+            }
+
             function resize(id)
             {
                 document.getElementById(id).className = "grid_6";
@@ -29,22 +34,19 @@
     </head>    
     <!--Перенести все стили в CSS -->
     <!--Найти няшный моноширный щрифт -->
-    <body style="background-image: url(hand.jpg); background-size: 100%; margin:0">
-        <!--Прилепить кверху как на скриншоте -->
-        <!--Выделять актиыные тайлы -->
-        <div class="container_12">
-            <div class="grid_12" id="header" style="height: 5%; color: white;">
-                <span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>&nbsp;|&nbsp;<span>3124135135</span>
-            </div>
-            <div class="clear"></div>
-            <!--Убрать копипасту!!! -->
-            <div class="grid_4" id="about" style="height: 45%;" onclick="resize(this.id);">3.14159265</div>
-            <div class="grid_4" id="works" style="height: 45%;" onclick="resize(this.id);">3.14159265</div>
-            <div class="grid_4" id="cmd" style="height: 45%;" onclick="resize(this.id);">Напихать контента</div>
-            <div class="clear"></div>
-            <div class="grid_10" id="blog" style="height: 50%;">3.14159265</div>
-            <div class="grid_2">Облако тегов</div>
-            <div class="clear"></div>
-        </div>    
+    <body class="container" background="images/hand.jpg"> 
+        <div class="header">
+            <span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>&nbsp;|&nbsp;<span>3124135135</span>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_4" id="about">3.14159265</div>
+        <div class="grid_4" id="works">3.14159265</div>
+        <div class="grid_4" id="cmd">Напихать контента</div>
+        <div class="clear"></div>
+        <div class="grid_10" id="blog">3.14159265</div>
+        <div class="grid_2" id="cloud">Облако тегов</div>
+        <div class="clear"></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     </body>
 </html>
+
