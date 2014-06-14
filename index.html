@@ -1,52 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Alex_blog</title>
-        <link rel="stylesheet" href="css/my_column_12.css" />
-        <script type="text/javascript">
-        //TODO: сделать абстрактным!
-        //м.б. использовать ViewModel? ;-P
-            function try (this){
-                var block = [["about","works","cmd"],["blog","cloud"]];
-
-            }
-
-            function resize(id)
-            {
-                document.getElementById(id).className = "grid_6";
-                switch (id){
-                    case "about":
-                        document.getElementById('works').className = "grid_3";
-                        document.getElementById('cmd').className = "grid_3";
-                        break;
-                    case "works":
-                        document.getElementById('about').className = "grid_3";
-                        document.getElementById('cmd').className = "grid_3";
-                        break;
-                    case "cmd":
-                        document.getElementById('works').className = "grid_3";
-                        document.getElementById('about').className = "grid_3";
-                        break;
-                }
-            }
-        </script>
-    </head>    
-    <!--Перенести все стили в CSS -->
-    <!--Найти няшный моноширный щрифт -->
-    <body class="container" background="images/hand.jpg"> 
-        <div class="header">
-            <span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>&nbsp;|&nbsp;<span>3124135135</span>
-        </div>
-        <div class="clear"></div>
-        <div class="grid_4" id="about">3.14159265</div>
-        <div class="grid_4" id="works">3.14159265</div>
-        <div class="grid_4" id="cmd">Напихать контента</div>
-        <div class="clear"></div>
-        <div class="grid_10" id="blog">3.14159265</div>
-        <div class="grid_2" id="cloud">Облако тегов</div>
-        <div class="clear"></div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>Alex_blog</title>
+    <link rel="stylesheet" href="css/my_column_12.css" /> 
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+    <script src="scripts/main.js"></script>
+  </head>    
+  
+  <body> 
+    <div class="header">
+      <span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>|<span>3124135135</span>&nbsp;|&nbsp;<span>3124135135</span>
+    </div>
+    <div id="container">
+      
+    </div>
+    <!-- <div class="clear"></div>
+    <div class="grid_4 box" id="about">
+      <p  class="title"><a class="title_link" href="vk.com">Div Title</a></p>
+      <p class="content">Div content.</p>
+    </div>
+    <div class="grid_4 box" id="works">
+      <p class="title">Div Title</p>
+      <p class="content">Div content.</p>
+    </div>
+    <div class="grid_4 box" id="cmd">
+      <p class="title">Div Title</p>
+      <p class="content">Div content.</p>
+    </div>
+    <div class="clear"></div> -->
+  
+  </body>
 </html>
 

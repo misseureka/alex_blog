@@ -5,9 +5,37 @@ html{
 body{
     width: 100%;
 	height:100%;
-	/*background: url(images/hand.png);*/
+	background: url(../images/hand.jpg);
 	background-size: 100%;
 	margin:0;
+}
+
+#container{
+	width: 100%;
+	height: 100%;
+}
+
+.box{
+	border: 2px solid gray;
+	border-radius: 8px;
+}
+
+.content{
+	margin: 1%;
+	padding: 1%;
+}
+.title{
+	border-radius: 5px 5px 0px 0px;
+	background:gray;
+	color:white;
+	padding:5px;
+	margin:0; 
+	font-size: 10px;	
+}
+
+.title_link{
+	color:white;
+	text-decoration: none;
 }
 
 .header{
@@ -35,21 +63,42 @@ body{
 .grid_9,
 .grid_10,
 .grid_11,
-.grid_12 {
+.grid_12,
+.small,
+.medium,
+.large {
     display:inline;
 	float: left;
 	position: relative;
     background-color: rgba(0, 0, 0, 0.5);
-    outline:1px solid gray;
-    outline-offset:-2px;
+    /*outline:1px solid gray;*/
+    /*outline-offset:-2px;*/
     color: white;
     height: 47.5%;
-    padding: 1%;    
-    box-sizing: border-box;
+    /*padding: 1%;    */
+    box-sizing: border-box;    
 }
 
 .grid_4:active{
 	resize(this);
+}
+
+.grid_1:hover > .title,
+.grid_2:hover > .title,
+.grid_3:hover > .title,
+.grid_4:hover > .title,
+.grid_5:hover > .title,
+.grid_6:hover > .title,
+.grid_7:hover > .title,
+.grid_8:hover > .title,
+.grid_9:hover > .title,
+.grid_10:hover > .title,
+.grid_11:hover > .title,
+.grid_12:hover > .title,
+.small:hover > .title,
+.medium:hover > .title,
+.large:hover > .title{
+	background:#0094ff;
 }
 
 .grid_1:hover,
@@ -63,16 +112,20 @@ body{
 .grid_9:hover,
 .grid_10:hover,
 .grid_11:hover,
-.grid_12:hover{
-	outline:1px solid white;
-    outline-offset:-2px;
-    background-color: rgba(0, 0, 0, 0.6);
+.grid_12:hover,
+.small:hover,
+.medium:hover,
+.large:hover{
+	/*outline:1px solid white;
+    outline-offset:-2px;*/
+    border: 2px solid #0094ff;
+    background-color: rgba(0, 0, 0, 0.6);    
 }
  .grid_1 {
 	width:8.333%;
 }
 
- .grid_2 {
+ .small {
 	width:16.667%;
 }
 
@@ -80,7 +133,7 @@ body{
 	width:25.0%;
 }
 
- .grid_4 {
+ .medium {
 	width:33.333%;
 }
 
@@ -104,7 +157,7 @@ body{
 	width:75.0%;
 }
 
-.grid_10 {
+.large {
 	width:83.333%;
 }
 
