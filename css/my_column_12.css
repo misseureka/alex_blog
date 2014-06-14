@@ -15,18 +15,14 @@ body{
 	height: 100%;
 }
 
-.box{
-	border: 2px solid gray;
-	border-radius: 8px;
-}
-
 .content{
 	margin: 1%;
 	padding: 1%;
 }
+
 .title{
 	border-radius: 5px 5px 0px 0px;
-	background:gray;
+	background:#666666;
 	color:white;
 	padding:5px;
 	margin:0; 
@@ -36,6 +32,24 @@ body{
 .title_link{
 	color:white;
 	text-decoration: none;
+}
+
+.selected{
+	border: 2px solid #333333 !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 8px;
+ 	color: white;
+}
+
+.selected > .title{
+	background:#333333;
+}
+
+.unselected{
+	border: 2px solid #666666;
+	border-radius: 8px;
+ 	color: white;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .header{
@@ -63,42 +77,12 @@ body{
 .grid_9,
 .grid_10,
 .grid_11,
-.grid_12,
-.small,
-.medium,
-.large {
+.grid_12{	
     display:inline;
 	float: left;
 	position: relative;
-    background-color: rgba(0, 0, 0, 0.5);
-    /*outline:1px solid gray;*/
-    /*outline-offset:-2px;*/
-    color: white;
-    height: 47.5%;
-    /*padding: 1%;    */
+    height: 47.5%;    
     box-sizing: border-box;    
-}
-
-.grid_4:active{
-	resize(this);
-}
-
-.grid_1:hover > .title,
-.grid_2:hover > .title,
-.grid_3:hover > .title,
-.grid_4:hover > .title,
-.grid_5:hover > .title,
-.grid_6:hover > .title,
-.grid_7:hover > .title,
-.grid_8:hover > .title,
-.grid_9:hover > .title,
-.grid_10:hover > .title,
-.grid_11:hover > .title,
-.grid_12:hover > .title,
-.small:hover > .title,
-.medium:hover > .title,
-.large:hover > .title{
-	background:#0094ff;
 }
 
 .grid_1:hover,
@@ -112,20 +96,14 @@ body{
 .grid_9:hover,
 .grid_10:hover,
 .grid_11:hover,
-.grid_12:hover,
-.small:hover,
-.medium:hover,
-.large:hover{
-	/*outline:1px solid white;
-    outline-offset:-2px;*/
-    border: 2px solid #0094ff;
+.grid_12:hover{
     background-color: rgba(0, 0, 0, 0.6);    
 }
  .grid_1 {
 	width:8.333%;
 }
 
- .small {
+ .grid_2 {
 	width:16.667%;
 }
 
@@ -133,7 +111,7 @@ body{
 	width:25.0%;
 }
 
- .medium {
+ .grid_4 {
 	width:33.333%;
 }
 
@@ -157,7 +135,7 @@ body{
 	width:75.0%;
 }
 
-.large {
+.grid_10 {
 	width:83.333%;
 }
 
