@@ -1,0 +1,16 @@
+{
+  "name": "AlexCoon-Blog",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "jade": "latest",
+    "mongodb": "latest",
+    "socket.io": "latest",
+    "pty.js": "latest",
+    "term.js": "latest"
+  }
+}
