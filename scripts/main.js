@@ -8,7 +8,7 @@ $(document).ready(function() {
         size: 'medium',
         title: 'Experience'
     }, {
-        id: 'cmd',
+        id: 'terminal',
         size: 'medium',
         title: 'Command'
     }, {
@@ -73,6 +73,12 @@ $(document).ready(function() {
             "</a></p></div>";
         $("#container").append(newdiv);
     };
+
+    var e = document.getElementById("terminal");
+    client.run({
+      parent: e,
+      remote: "http://localhost:8080/"
+    })
 
     $("#container div").click(function(e) {
         if ($(this).hasClass('selected')) {
