@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    function Tile(id, title, gridNumber) {
+    function Tile(root, id, title, gridNumber) {
         var _this = this;
         _this.id = id;
         _this.defGridNumber = gridNumber;
@@ -7,6 +7,7 @@ $(document).ready(function() {
         _this.gridNumber = ko.observable(gridNumber);
         _this.isSelected = ko.observable(false);
         _this.raw = 0;
+        _this.root = root;
 
         _this.gridClass = ko.computed(function() {
             return 'grid_' + _this.gridNumber();
@@ -21,14 +22,18 @@ $(document).ready(function() {
         });
 
         _this.toDefault = function() {
-            _this.gridNumber = _this.defGridNumber;
+            _this.gridNumber(_this.defGridNumber);
+            _this.isSelected(false);
         };
 
-        _this.resize = function() {
+        _this.onClick = function() {
             if (_this.isSelected()) {
                 return;
             } else {
+                _this.root.dropAllToDefault();
+                _this.root.resize(_this);
                 _this.isSelected(true);
+
             }
         };
     };
@@ -66,7 +71,7 @@ $(document).ready(function() {
 
         _this.tiles = ko.observableArray(_this.inputTiles.map(function(e) {
             var currentNumber = _this.tilesSize[e.size];
-            return new Tile(e.id, e.title, currentNumber);
+            return new Tile(_this, e.id, e.title, currentNumber);
         }));
 
         var rawWidth = -1;
@@ -76,6 +81,26 @@ $(document).ready(function() {
             _this.tiles()[i].raw = parseInt(rawWidth / 12);
         };
 
+        _this.dropAllToDefault = function() {
+            for (var i = 0; i < _this.tiles().length; i++) {
+                _this.tiles()[i].toDefault();
+            };
+        };
+
+        _this.resize = function(element) {
+            var nearby = _this.tiles().filter(function(e) {
+                if (e.raw == element.raw) {
+                    return e;
+                }
+            });
+            for (var i = 0; i < nearby.length; i++) {
+                if (nearby[i] == element) {
+                    element.gridNumber(element.gridNumber() + nearby.length - 1);
+                } else {
+                    nearby[i].gridNumber(nearby[i].gridNumber() - 1);
+                }
+            };
+        };
     };
 
     ko.applyBindings(new ViewModel());
