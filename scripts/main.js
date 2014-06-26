@@ -6,13 +6,30 @@ $(document).ready(function() {
         _this.title = title;
         _this.gridNumber = ko.observable(gridNumber);
         _this.isSelected = ko.observable(false);
+        _this.raw = 0;
 
         _this.gridClass = ko.computed(function() {
-            return 'grid_' + _this.gridNumber;
+            return 'grid_' + _this.gridNumber();
+        });
+
+        _this.classes = ko.computed(function() {
+            if (!_this.isSelected()) {
+                return _this.gridClass();
+            } else {
+                return _this.gridClass() + ' selected';
+            }
         });
 
         _this.toDefault = function() {
             _this.gridNumber = _this.defGridNumber;
+        };
+
+        _this.resize = function() {
+            if (_this.isSelected()) {
+                return;
+            } else {
+                _this.isSelected(true);
+            }
         };
     };
 
@@ -47,23 +64,18 @@ $(document).ready(function() {
             'large': 10
         };
 
-        _this.tiles = ko.observableArray(inputTiles.map(function(e) {
+        _this.tiles = ko.observableArray(_this.inputTiles.map(function(e) {
             var currentNumber = _this.tilesSize[e.size];
             return new Tile(e.id, e.title, currentNumber);
         }));
 
-        _this.currentWidth = -1;
+        var rawWidth = -1;
 
-        _this.tiles.forEach(function(element, index, array) {
-            array[index].grid = currentNumber;
-            _this.currentWidth += currentNumber;
-            array[index].line = parseInt(_this.currentWidth / 12);
-            array[index].active = false;
-        });
-
-        _this.reSize = function() {
-            _this.tiles[3].active = true;
+        for (var i = 0; i < _this.tiles().length; i++) {
+            rawWidth += _this.tiles()[i].gridNumber();
+            _this.tiles()[i].raw = parseInt(rawWidth / 12);
         };
+
     };
 
     ko.applyBindings(new ViewModel());
