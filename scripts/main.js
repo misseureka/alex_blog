@@ -1,122 +1,70 @@
 $(document).ready(function() {
-    var tiles = [{
-        id: 'about',
-        size: 'medium',
-        title: 'About me'
-    }, {
-        id: 'works',
-        size: 'medium',
-        title: 'Experience'
-    }, {
-        id: 'terminal',
-        size: 'medium',
-        title: 'Command'
-    }, {
-        id: 'blog',
-        size: 'large',
-        title: 'My blog'
-    }, {
-        id: 'cloud',
-        size: 'small',
-        title: 'Cloud of tags'
-    }];
+    function Tile(id, title, gridNumber) {
+        var _this = this;
+        _this.id = id;
+        _this.defGridNumber = gridNumber;
+        _this.title = title;
+        _this.gridNumber = ko.observable(gridNumber);
+        _this.isSelected = ko.observable(false);
 
-    var viewModel = [];
-    var currentWidth = 0;
-    var currentRaw = [];
-    var currentNumber = 0;
-
-    for (var i = 0; tiles[i]; i++) {
-        var classname = "";
-        var el = tiles[i];
-        switch (el.size) {
-            case 'small':
-                {
-                    classname = "grid_2"
-                    currentWidth += 2;
-                    currentNumber = 2;
-                    break;
-                }
-            case 'medium':
-                {
-                    classname = "grid_4"
-                    currentWidth += 4;
-                    currentNumber = 4;
-                    break;
-                }
-            case 'large':
-                {
-                    classname = "grid_10"
-                    currentWidth += 10;
-                    currentNumber = 10;
-                    break;
-                }
-            default:
-                break;
-        };
-
-        currentRaw.push({
-            id: el.id,
-            defclass: classname,
-            number: currentNumber
+        _this.gridClass = ko.computed(function() {
+            return 'grid_' + _this.gridNumber;
         });
 
-        if (currentWidth == 12) {
-            currentWidth = 0;
-            viewModel.push(currentRaw);
-            currentRaw = [];
-        }
-
-        var newdiv = "<div class=\"unselected " + classname +
-            "\" id=\"" + el.id +
-            "\"><p class=\"title\"><a class=\"title_link\" href=\"vk.com\">" + el.title +
-            "</a></p></div>";
-        $("#container").append(newdiv);
+        _this.toDefault = function() {
+            _this.gridNumber = _this.defGridNumber;
+        };
     };
 
-    var e = document.getElementById("terminal");
-    client.run({
-      parent: e,
-      remote: "http://localhost:8080/"
-    })
+    function ViewModel() {
+        var _this = this;
 
-    $("#container div").click(function(e) {
-        if ($(this).hasClass('selected')) {
-            return;
-        } else {
-            if ($(".selected")) {
-                viewModel.forEach(function(el) {
-                    el.forEach(function(el) {
-                        $("#" + el.id).attr('class', el.defclass);
-                        $("#" + el.id).addClass('unselected');
-                    });
-                });
-            }
-            var idClicked = this.id;
-            var nearBy = [];
-            ex: for (var i = 0; i < viewModel.length; i++) {
-                for (var j = 0; j < viewModel[i].length; j++) {
-                    if (viewModel[i][j].id == idClicked) {
-                        nearBy = viewModel[i];
-                        break ex;
-                    }
-                };
-            };
-            resize(this, nearBy);
-        }
-    });
+        _this.inputTiles = [{
+            id: 'about',
+            size: 'medium',
+            title: 'About me'
+        }, {
+            id: 'works',
+            size: 'medium',
+            title: 'Experience'
+        }, {
+            id: 'terminal',
+            size: 'medium',
+            title: 'Command'
+        }, {
+            id: 'blog',
+            size: 'large',
+            title: 'My blog'
+        }, {
+            id: 'cloud',
+            size: 'small',
+            title: 'Cloud of tags'
+        }];
+
+        _this.tilesSize = {
+            'small': 2,
+            'medium': 4,
+            'large': 10
+        };
+
+        _this.tiles = ko.observableArray(inputTiles.map(function(e) {
+            var currentNumber = _this.tilesSize[e.size];
+            return new Tile(e.id, e.title, currentNumber);
+        }));
+
+        _this.currentWidth = -1;
+
+        _this.tiles.forEach(function(element, index, array) {
+            array[index].grid = currentNumber;
+            _this.currentWidth += currentNumber;
+            array[index].line = parseInt(_this.currentWidth / 12);
+            array[index].active = false;
+        });
+
+        _this.reSize = function() {
+            _this.tiles[3].active = true;
+        };
+    };
+
+    ko.applyBindings(new ViewModel());
 });
-
-function resize(selected, nearBy) {
-    nearBy.forEach(function(el) {
-
-        if (el.id == selected.id) {
-            $('#' + el.id).attr('class', 'grid_' + (el.number + nearBy.length - 1));
-            $('#' + el.id).removeClass('unselected');
-            $('#' + el.id).addClass('selected');
-        } else {
-            $('#' + el.id).attr('class', 'grid_' + (el.number - 1));
-            $('#' + el.id).addClass('unselected');
-        }
-    });
-};

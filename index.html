@@ -5,17 +5,26 @@
     <title>Alex_blog</title>
     <link rel="stylesheet" href="css/my_column_12.css" /> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> 
+    <script src="http://knockoutjs.com/downloads/knockout-3.1.0.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/client.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="term.js"></script>
+    <script src="term.js"></script>    
  </head>    
   
   <body> 
     <div class="header">
       <span>Some common things here...</span>
     </div>
-    <div id="container"></div> 
+    <div id="container">
+      <!-- ko foreach: tiles -->
+      <div data-bind="attr: { id: id}, css: {'grid_4': true, 'unselected': !active, 'selected':active}, click: $root.reSize">
+        <p class="title">
+          <a class="title_link" href="vk.com" data-bind="text: title"></a>
+        </p>
+      </div> 
+      <!-- /ko -->
+    </div> 
  </body>
 </html>
 
